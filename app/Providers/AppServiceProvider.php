@@ -27,7 +27,7 @@ class AppServiceProvider extends ServiceProvider
             ])->baseUrl('http://scheduling-web.test/api');
         });
 
-        Http::macro('auth', function () {
+        Http::macro('auth', function () {   
             return Http::server()->withToken(session('api_token'));
         });
     }

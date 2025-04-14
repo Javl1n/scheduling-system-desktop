@@ -43,14 +43,14 @@ class RegisteredUserController extends Controller
             'password' => $request->password,
             'password_confirmation' => $request->password_confirmation,
         ]);
-
+        
         if ($response->unprocessableEntity()){
-            return redirect('/register')->withErrors($response->json()['errors']);
+            return redirect('/register')->withErrors($response->json());
         }
 
         $request->session()->regenerate();
 
-        $request->session()->push('api_token', $response->json()['token']);
+        $request->session()->put('api_token', $response->json()['token']);
 
         return to_route('dashboard');
     }

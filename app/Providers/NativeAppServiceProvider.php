@@ -13,11 +13,18 @@ class NativeAppServiceProvider implements ProvidesPhpIni
      */
     public function boot(): void
     {
+
         Window::open()
+            ->title("Seait Scheduling")
+            // ->titleBarHidden()
+            ->backgroundColor("#00000050")
+            ->url(route("dashboard"))
+            // ->url("/")
             ->hideMenu()
             ->width(1080)
             ->height(720)
             ->maximized();
+        
     }
 
     /**

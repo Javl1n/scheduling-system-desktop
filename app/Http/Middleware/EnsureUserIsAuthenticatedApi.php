@@ -17,6 +17,7 @@ class EnsureUserIsAuthenticatedApi
     public function handle(Request $request, Closure $next): Response
     {
         if (Http::auth()->get('user')->unauthorized()) {
+            session()->put("api_token", "");   
             return redirect('login');
         }
 
