@@ -8,6 +8,7 @@ import InputError from "../input-error";
 import { toast } from "sonner";
 import { useState } from "react";
 import { dialog } from "electron";
+import ToggleTile from "../toggle-tile";
 
 type SubjectForm = {
      code: string;
@@ -27,7 +28,6 @@ export default function CreateSubject () {
      });
 
      const toggleYear = (year: string) => {
-          console.log(1);
           if (data.years.includes(year)) {
                setData('years', [...data.years.filter((item) => item != year)]);
           } else {
@@ -40,11 +40,9 @@ export default function CreateSubject () {
      const submit = () => {
           post(route("subject.store"), {
                onSuccess: () => {
-                    // toast("Subject Created Successfully!", {
-                    //      description: `${data.code} - ${data.title}`,
-                    //      // icon: <CheckCircle2Icon className="me-2" />,
-                    //      // type: "success",
-                    // });
+                    toast("Subject Created Successfully!", {
+                         description: `${data.code} - ${data.title}`,
+                    });
                     reset();
                     setDialogState(false);
                },
@@ -57,7 +55,7 @@ export default function CreateSubject () {
                <DialogTrigger asChild>
                     <Button className="" variant={"default"}>Add Subject</Button>
                </DialogTrigger>
-               <DialogContent >
+               <DialogContent>
                     <DialogHeader>
                          <DialogTitle>Add Subject</DialogTitle>
                          <DialogDescription>
@@ -91,8 +89,8 @@ export default function CreateSubject () {
                          <Label>Subject Year</Label>
                          <div className="grid grid-cols-4 gap-2">
                               {years.map((year) => (
-                                   <div onClick={() => toggleYear(year)} key={year} className={`${yearIsIncluded(year) ? 'border-green-400 bg-green-600/20' : 'border-sidebar-border'} select-none aspect-video border  rounded-xl text-sm text-center flex flex-col justify-center`}>
-                                        {year} Year
+                                   <div onClick={() => toggleYear(year)} key={`create-subject-${year}`}>
+                                        <ToggleTile text={`${year} Year`} toggle={yearIsIncluded(year)} />
                                    </div>
                               ))}
                          </div>

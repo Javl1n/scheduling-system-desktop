@@ -3,22 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
-class SubjectController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $subjects = Http::auth()->get("/subject")->json();
+        $rooms = Http::auth()->get("room/")->json();
 
-        return Inertia::render("subjects/index", [
-            "subjects" => $subjects
+        return Inertia::render("rooms/index", [
+            "rooms" => $rooms,
         ]);
     }
 
@@ -35,28 +33,7 @@ class SubjectController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
-            "code" => "required|string",
-            "title" => "required|string",
-            "years" => "required",
-            "years.*" => ["string", Rule::in(["First", "Second", "Third", "Fourth"])]
-        ], [
-            "years" => [
-                "required" => "Must select at least one year level."
-            ]
-        ]);
-
-        $response = Http::auth()->post("subject/store", [
-            "code" => $request->code,
-            "title" => $request->title,
-            "years" => $request->years,
-        ]);
-        
-        if ($response->unprocessableEntity()) {
-            return back()->withErrors($response->json()["errors"]);
-        }
-
-        return back();
+        //
     }
 
     /**

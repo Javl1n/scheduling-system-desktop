@@ -1,5 +1,5 @@
+import { SearchBar } from '@/components/search-bar';
 import CreateSubject from '@/components/subjects/create';
-import { SearchBar, SelectYear } from '@/components/subjects/filters';
 import SubjectTile from '@/components/subjects/index-tile';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -27,13 +27,27 @@ export default function Index({
         setFilteredSubjects([...subjects]);
     }, [subjects]);
 
+    const searchSubject = (item: string) => {
+        setFilteredSubjects([
+            ...subjects.filter((subject) => 
+                subject.code.toLowerCase().includes(item) 
+                || subject.title.toLowerCase().includes(item) 
+                || subject.years.map(year => year.year.toLowerCase() + " year").toString().includes(item.toLowerCase())
+            )
+        ]);
+    }
+
     return (
         <AppLayout breadcrumbs={breadcrumbs}>
             <Head title="Subject" />
             <div className="flex h-full flex-1 flex-col gap-4 rounded-xl p-4">
                 <div className='flex justify-end gap-4'>
                     {/* <div><SelectYear setSubjects={setFilteredSubjects} subjects={subjects} /></div> */}
-                    <div><SearchBar setSubjects={setFilteredSubjects} subjects={subjects} /></div>
+                    <SearchBar 
+                        reset={() => setFilteredSubjects([...subjects])}
+                        search={searchSubject}
+                        placeholder='Search for code, title, year level'
+                    />
                     <CreateSubject />
                 </div>
                 <div className="grid auto-rows-min gap-4 grid-cols-1 lg:grid-cols-2 2xl:grid-cols-3">

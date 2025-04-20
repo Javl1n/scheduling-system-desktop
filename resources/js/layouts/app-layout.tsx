@@ -1,16 +1,20 @@
 import AppLayoutTemplate from '@/layouts/app/app-sidebar-layout';
 import { type BreadcrumbItem } from '@/types';
-import { type ReactNode } from 'react';
-import { Toaster } from 'sonner';
+import { usePage } from '@inertiajs/react';
+import { useEffect, type ReactNode } from 'react';
+import { toast, Toaster } from 'sonner';
+import { PageProps } from "@inertiajs/core";
+
 
 interface AppLayoutProps {
     children: ReactNode;
     breadcrumbs?: BreadcrumbItem[];
 }
 
-export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => (
-    <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
-        <main className='h-full'>{children}</main>
-        <Toaster theme='system'  />
-    </AppLayoutTemplate>
-);
+export default ({ children, breadcrumbs, ...props }: AppLayoutProps) => {
+    return (
+        <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
+            <main className='h-full'>{children}</main>
+            <Toaster theme='system'  />
+        </AppLayoutTemplate>
+    );}
