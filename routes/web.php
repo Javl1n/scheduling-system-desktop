@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BlockController;
 use App\Http\Controllers\InstructorController;
 use App\Http\Controllers\RoomController;
 use App\Http\Controllers\SubjectController;
@@ -40,6 +41,15 @@ Route::middleware(['auth-api'])->group(function () {
     ->group(function () {
         Route::get('/', 'index')->name("index");
         Route::post('/store', 'store')->name('store');
+    });
+
+    Route::controller(BlockController::class)
+    ->prefix("block")
+    ->name("block.")
+    ->group(function () {
+        Route::get('/', 'index')->name("index");
+        Route::get('/create', 'create')->name("create");
+        // Route::post('/store', 'store')->name('store');
     });
 });
 

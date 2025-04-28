@@ -4,7 +4,7 @@ import { NavUser } from '@/components/nav-user';
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from '@/components/ui/sidebar';
 import { type NavItem } from '@/types';
 import { Link } from '@inertiajs/react';
-import { BookOpen, BookText, Folder, LayoutGrid, SquareSquare, SquareStack, Users } from 'lucide-react';
+import { BookOpen, BookText, Building, Folder, LayoutGrid, SquareSquare, SquareStack, Users } from 'lucide-react';
 import AppLogo from './app-logo';
 
 const mainNavItems: NavItem[] = [
@@ -26,6 +26,11 @@ const mainNavItems: NavItem[] = [
     {
         title: 'Rooms',
         href: route("room.index"),
+        icon: Building,
+    },
+    {
+        title: 'Blocks',
+        href: route("block.index"),
         icon: SquareSquare,
     },
 ];
