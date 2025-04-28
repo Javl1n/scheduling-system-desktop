@@ -1,18 +1,18 @@
 import { ArrowBigDown, ArrowDown, ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
 import { Separator } from "../ui/separator";
+import { v4 as uuidv4 } from "uuid";
 
 const centerSteps = (steps: number = 8) => {
      return (
           <>
                {Array.from({length: steps}, () => (
-                    <Separator className="mt-1 first:mt-0" />
+                    <Separator key={uuidv4()} className="mt-1 first:mt-0" />
                ))}
           </>
      )
 }
 
 export function CenterStairs() {
-
      return (
           <div className="h-[100px] border-t-5 border-r-5 w-[120px]">
                <div className="grid grid-cols-4 pt-7">
@@ -67,8 +67,8 @@ export function CenterGroundStairs() {
 export function EmergencyStairs({inverse} : {inverse: boolean}) {
      const steps = (steps: number = 7) => {
           return (<>
-               {Array.from({length: steps}, () => (
-                    <Separator orientation="vertical" />
+               {Array.from({length: steps}, (i, k) => (
+                    <Separator key={uuidv4()} orientation="vertical" />
                ))}
           </>)
      }

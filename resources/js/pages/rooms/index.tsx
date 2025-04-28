@@ -70,6 +70,7 @@ function TransformContent({rooms, floor}: {rooms: Room[], floor: string}) {
 
     return(
         <div className={`scale-75 ${sidebarOpen ? 'h-[calc(100vh-5rem)] w-[calc(100vw-16rem)]' :  'h-[calc(100vh-4rem)] w-[calc(100vw-4rem)]'} flex flex-col justify-center`}>
+        {/* <div className={`scale-75 flex flex-col justify-center`}> */}
             <div className="flex mx-auto">
                 <div>
                     {rooms.filter(room => room.placement == "left" && room.floor == floor).map((room, i, {length}) => (

@@ -10,7 +10,7 @@ const breadcrumbs: BreadcrumbItem[] = [
     },
 ];
 
-export default function BlocksIndex() {
+export default function BlockIndex() {
      return (
           <AppLayout breadcrumbs={breadcrumbs}>
                <Head title="Subject" />

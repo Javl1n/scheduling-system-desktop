@@ -24,28 +24,28 @@ const hSpan: any = {
      "full wing": "h-[580px]"
 };
 
+interface RoomView {
+     room: Room;
+     last?: boolean;
+     indicator?: string
+}
 
-export const CenterRoom: FC<{
-     room: Room,
-     last?: boolean
-}> = ({room, last = false}) => {
+
+export const CenterRoom: FC<RoomView> = ({room, last = false, indicator = ''}) => {
      const available = !room.available ? 'bg-neutral-100 text-neutral-400 dark:bg-neutral-900 dark:text-neutral-500' : 'dark:bg-neutral-950';
 
      return (
-          <div  className={`border-5 border-l-0 ${last ? 'border-r-0': ''} ${height} ${wSpan[room.span]} ${available}`}>
+          <div  className={`border-5 border-l-0 ${indicator!} ${last ? 'border-r-0': ''} ${height} ${wSpan[room.span]} ${available}`}>
                <h5 className='text-xs text-center flex flex-col justify-center h-full px-1'>{room.code}</h5>
           </div>
      )
 }
 
-export const WingRoom: FC<{
-     room: Room,
-     last?: boolean
-}> = ({room, last = false}) => {
+export const WingRoom: FC<RoomView> = ({room, last = false, indicator = ''}) => {
      const available = !room.available ? 'bg-neutral-100 text-neutral-400 dark:bg-neutral-900 dark:text-neutral-500' : 'dark:bg-neutral-950';
 
      return (
-          <div className={`border-5 ${last ? 'border-b-5' : 'border-b-0'} ${hSpan[room.span]} ${width} ${available}`}>
+          <div className={`border-5 ${indicator} ${last ? 'border-b-5' : 'border-b-0'} ${hSpan[room.span]} ${width} ${available}`}>
                <h5 className='text-xs text-center flex flex-col justify-center h-full px-2'>{room.code}</h5>
           </div>
      )

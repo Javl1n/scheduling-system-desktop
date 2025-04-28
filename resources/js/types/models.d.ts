@@ -1,3 +1,8 @@
+export type RoomType = "Library" | "Classroom" | "Laboratory" | "Comfort Room" | "Office" | "Misc." | "Structure";
+export type FloorType = string | "1" | "2" | "3" | "4";
+export type YearType = string | "First" | "Second" | "Third" | "Fourth";
+export type DayType = string | "Monday" | "Tuesday" | "Wednesday" | "Thursday"| "Friday" | "Saturday" | "Sunday";
+export type Time24Type = string | "07:00" | "08:30" | "10:00" | "11:30" | "13:00" | "14:30" | "16:00" | "17:30" | "19:00";
 export interface Subject {
      id: number;
      code: string;
@@ -6,7 +11,7 @@ export interface Subject {
 }
 
 export interface Year {
-     year: string | "First" | "Second" | "Third" | "Fourth";
+     year: YearType;
 }
 
 export interface Instructor {
@@ -17,7 +22,7 @@ export interface Instructor {
 }
 
 export interface Day {
-     day: string | "Monday" | "Tuesday" | "Wednesday" | "Thursday"| "Friday" | "Saturday" | "Sunday"
+     day: DayType
 }
 
 export interface Room {
@@ -27,10 +32,11 @@ export interface Room {
      span: string;
 
      placement: "right" | "center" | "left";
-     floor: "1" | "2" | "3" | "4";
+     floor: FloorType;
      number: number;
 
-     type:  "Library" | "Classroom" | "Laboratory" | "Comfort Room" | "Office" | "Misc." | "Structure";
+     type: RoomType;
 
      available: boolean;
 }
+
